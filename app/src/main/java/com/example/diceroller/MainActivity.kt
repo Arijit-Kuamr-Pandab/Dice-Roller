@@ -6,6 +6,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 
 class MainActivity : AppCompatActivity() {
@@ -16,9 +18,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         button = findViewById(R.id.button)
         image = findViewById(R.id.diceImage)
+
         button.setOnClickListener {
-            val value: Int = roll()
-            when(value){
+            when(roll()){
                 1-> Glide.with(this).load(R.drawable.dice_1).placeholder(R.drawable.ic_launcher_background).into(image)
                 2-> Glide.with(this).load(R.drawable.dice_2).placeholder(R.drawable.ic_launcher_background).into(image)
                 3-> Glide.with(this).load(R.drawable.dice_3).placeholder(R.drawable.ic_launcher_background).into(image)
@@ -29,12 +31,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    class Dice(val numSides: Int) {
-//
-//        fun roll(): Int {
-//            return (1..numSides).random()
-//        }
-//    }
     fun roll():Int{
         return (1..6).random()
     }
